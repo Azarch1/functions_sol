@@ -1,12 +1,26 @@
 pragma solidity ^0.7.4;
 
 contract functions {
-    address owner;
+    address payable owner;
      
     mapping(address => uint) public balanceReceived;
     
     constructor () public {
         owner = msg.sender;
+    }
+    
+    function getOwner () public view returns(address) {
+        return owner;
+    }
+    
+    function convertWeiToEther (uint _amountInEther) public pure returns(uint) {
+        return _amountInEther / 1 ether;
+    }
+    
+    
+    function destroySmartContract() public {
+        require(msg.sender == owner,"You are not the owner");
+        selfdestruct(owner);
     }
     
     function sendMoney() public payable {
