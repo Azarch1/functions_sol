@@ -13,6 +13,7 @@ contract functions {
         return owner;
     }
     
+    // A pure function is used when the function does not interact with anything stored in memory i.e mapping or variables"
     function convertWeiToEther (uint _amountInEther) public pure returns(uint) {
         return _amountInEther / 1 ether;
     }
